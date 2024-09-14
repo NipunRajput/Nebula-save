@@ -18,7 +18,7 @@ requirements.txt: Lists all Python libraries that the project depends on.
 .env: Stores configuration variables and sensitive information, not tracked in version control.
 
 
-
+To see the results, just scroll the website, it might take some time, the time depends on the amount of text submitted
 
 Installation
 Clone the repository to your local machine:
