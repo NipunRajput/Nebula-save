@@ -7,23 +7,8 @@ Text-to-Speech Integration: Utilizes AWS Polly to convert text into lifelike spe
 Dynamic Facial Animations: Synchronizes spoken words with facial expressions.
 AWS Elastic Beanstalk Deployment: Supports deployment on AWS for scalability and easy management.
 
-/nebula-save
-|-- /static
-|   |-- /avatar
-|   |   |-- happy.png
-|   |   |-- sad.png
-|   |   |-- surprised.png
-|   |   |-- wide.png
-|   |   |-- open.png
-|   |-- speech.mp3
-|   |-- slowed_speech.mp3
-|   |-- avatar_video.mp4
-|-- /templates
-|   |-- index.html
-|-- app.py
-|-- requirements.txt
-|-- README.md
-|-- .env
+<img width="160" alt="{2105A945-931B-4DD0-810E-7F93F48FC5E1}" src="https://github.com/user-attachments/assets/6ff4b842-1a44-4002-95b7-74c99f1d538f">
+
 
 
 static/: Contains all static files including images, audio, and video files.
