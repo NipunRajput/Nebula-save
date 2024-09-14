@@ -177,7 +177,6 @@
 
         <div id="video-container">
             <img id="loading-spinner" src="static/spinner.gif" alt="Loading..." width="50" height="50">
-            <!-- Video will be displayed here -->
         </div>
 
         <div class="cta-section">
@@ -194,7 +193,6 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Show loading spinner
             loadingSpinner.style.display = 'block';
 
             const text = document.getElementById('news_text').value;
@@ -208,7 +206,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                loadingSpinner.style.display = 'none'; // Hide the spinner
+                loadingSpinner.style.display = 'none';
 
                 if (data.file) {
                     const videoContainer = document.getElementById('video-container');
@@ -218,7 +216,7 @@
                 }
             })
             .catch((error) => {
-                loadingSpinner.style.display = 'none'; // Hide the spinner on error
+                loadingSpinner.style.display = 'none'; 
                 console.error('Error:', error);
             });
         });
