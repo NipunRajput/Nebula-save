@@ -7,7 +7,7 @@ Features
 
     Text-to-Speech Integration: Leverages AWS Polly to convert text into lifelike speech.
     Dynamic Facial Animations: Synchronizes spoken words with corresponding facial expressions.
-    AWS Elastic Beanstalk Deployment: Ensures scalable deployment and easy management through AWS Elastic Beanstalk.
+   
 
 Project Structure
 
@@ -57,25 +57,6 @@ bash
 flask run or python app.py
 
 Access the application by navigating to http://localhost:5000 in your web browser.
-Deployment on AWS Elastic Beanstalk
-1. Initialize and Configure Elastic Beanstalk
-
-bash
-
-eb init -p python-3.7 Nebula-save -r ap-south-1
-
-2. Create and Deploy Environment
-
-bash
-
-eb create nebula-env
-eb deploy
-
-3. Access Deployed Application
-
-bash
-
-eb open
 
 Usage
 
@@ -91,6 +72,4 @@ Ensure the following if you encounter issues:
     Amazon Polly policies are properly set.
     The .env file exists and is correctly formatted.
 
-Contributing
 
-Contributions are welcome! If you'd like to contribute, please fork the repository, make your changes, and submit a pull request.
