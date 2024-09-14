@@ -1,4 +1,5 @@
 Nebula Save - AI News Presenter
+Demo: https://youtu.be/41IFPs7jMqk
 Nebula Save is an AI-powered web application that generates a virtual news presenter capable of reading text-based news articles in a human-like voice, synchronized with facial animations. The application leverages AWS Polly for text-to-speech capabilities and Flask for backend operations.
 
 Features
@@ -93,8 +94,7 @@ The .env file is not missing and correctly formatted.
 Contributing
 Contributions are welcome. Please fork the repository, make your changes, and submit a pull request.
 
-License
-This project is licensed under the MIT License.
+
 
 
 
