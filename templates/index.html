@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News Presenter</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #0b2239;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #b3c2cd;
+            margin-bottom: 40px;
+        }
+
+        #news-form {
+            background-color: #1e3551;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            background-color: #0a2a42;
+            color: #ffffff;
+            resize: none;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+
+        .feature {
+            flex: 1;
+            padding: 20px;
+            color: #ffffff;
+        }
+
+        .feature img {
+            max-width: 50px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #b3c2cd;
+        }
+
+        #video-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #loading-spinner {
+            display: none;
+            margin: 0 auto;
+        }
+
+        video {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        /* Call-to-Action Section */
+        .cta-section {
+            background-color: #1e3551;
+            padding: 50px;
+            margin-top: 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-section h2 {
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: #b3c2cd;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta-section a {
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-section a:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unlock Your Potential with AI News Presenter</h1>
+        <p>Transform your text-based news articles into engaging video presentations with AI-powered video generation.</p>
+
+        <form id="news-form">
+            <textarea name="news_text" id="news_text" rows="10" placeholder="Enter your news article here..."></textarea><br><br>
+            <input type="submit" value="Generate Presentation">
+        </form>
+
+        <div class="features">
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/512/2040/2040303.png" alt="Speed">
+                <h3>Instant Generation</h3>
+                <p>Create news presentations in minutes, not hours.</p>
+            </div>
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/512/2040/2040159.png" alt="AI-Powered">
+                <h3>AI-Powered Presenter</h3>
+                <p>Our AI creates a realistic news presenter for your articles.</p>
+            </div>
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/512/2040/2040277.png" alt="Easy to Use">
+                <h3>Easy to Use</h3>
+                <p>Just input your news article, and the AI does the rest!</p>
+            </div>
+        </div>
+
+        <div id="video-container">
+            <img id="loading-spinner" src="static/spinner.gif" alt="Loading..." width="50" height="50">
+            <!-- Video will be displayed here -->
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to bring your news to life?</h2>
+            <p>Get started today and see the power of AI in action.</p>
+            <a href="#news-form">Work with Us</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('news-form');
+        const loadingSpinner = document.getElementById('loading-spinner');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Show loading spinner
+            loadingSpinner.style.display = 'block';
+
+            const text = document.getElementById('news_text').value;
+
+            fetch('/generate-avatar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: text }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                loadingSpinner.style.display = 'none'; // Hide the spinner
+
+                if (data.file) {
+                    const videoContainer = document.getElementById('video-container');
+                    videoContainer.innerHTML = `<video controls src="${data.file}" width="640" height="480"></video>`;
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch((error) => {
+                loadingSpinner.style.display = 'none'; // Hide the spinner on error
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
