@@ -22,6 +22,7 @@ Project Structure
     .env: Stores configuration variables and sensitive information (not tracked in version control).
 
 Installation Guide
+
 1. Clone the Repository
 
 bash
@@ -34,7 +35,7 @@ cd nebula-save
 bash
 
 pip install -r requirements.txt
-
+ffmpeg_path = r'Configure the Path'
 Configuration
 1. Setting Up AWS Polly
 
