@@ -9,6 +9,10 @@ Features
     Dynamic Facial Animations: Synchronizes spoken words with corresponding facial expressions.
    
 
+Encryption and Decryption
+
+This project securely handles sensitive AWS credentials using AES encryption. The encryption key is used to decrypt the encrypted AWS keys at runtime, ensuring that the credentials remain secure throughout the process.
+
 Project Structure
 
     static/: Contains all static files including images, audio, and video.
