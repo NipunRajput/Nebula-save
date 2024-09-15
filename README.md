@@ -35,6 +35,8 @@ cd nebula-save
 bash
 
 pip install -r requirements.txt
+
+
 ffmpeg_path = r'Configure the Path'
 Configuration
 1. Setting Up AWS Polly
