@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from pydub import AudioSegment
 from moviepy.editor import ImageClip, AudioFileClip, concatenate_videoclips, vfx
 import boto3
+from cryptography.fernet import Fernet
 
 # Load environment variables from the .env file
 load_dotenv(dotenv_path='key.env')
@@ -18,14 +19,25 @@ app = Flask(__name__)
 nltk.download('punkt')
 nltk.download('cmudict')
 
+
+# Helper function to decrypt the AWS credentials
+def decrypt_data(encrypted_data):
+    encryption_key = 'V3AdBoSu_9Tqrr54TUK6q3ppgFURBfxwAoICvvWMBEw='  # Hardcoded encryption key
+    fernet = Fernet(encryption_key.encode()) 
+    decrypted_data = fernet.decrypt(encrypted_data.encode())
+    return decrypted_data.decode() 
+
 # Create a Polly client to handle the text-to-speech conversion
 def get_polly_client():
+    aws_access_key_id = decrypt_data(os.getenv('AWS_ACCESS_KEY_ID'))  
+    aws_secret_access_key = decrypt_data(os.getenv('AWS_SECRET_ACCESS_KEY'))  
     return boto3.client(
         'polly',
         region_name='us-east-1',
-        aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-        aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
     )
+
 
 # Set up paths for the ffmpeg library. This will help with audio and video processing.
 ffmpeg_path = r'C:/Path_ff/ffmpeg.exe'
